@@ -9,6 +9,7 @@ const navbarBottom = document.getElementById('navbarBottom')
 const heroLeftColumn = document.getElementById('heroLeftColumn')
 const heroRightColumn = document.getElementById('heroRightColumn')
 const levelBtn = document.getElementById('level')
+const projects = document.getElementById('projects')
 
 const leftContainer = document.querySelector('#about .left-container')
 const rightContainer = document.querySelector('#about .right-container')
@@ -23,6 +24,8 @@ const sectionTitle = document.querySelectorAll('.section-title')
 const skillItems = document.querySelectorAll('#skill .skill-item')
 const listBtn = document.querySelectorAll('#projects .list')
 const itemBoxEls = document.querySelectorAll('#projects .itemBox')
+const expandBtns = document.querySelectorAll('.itemBox .btn-expand')
+const textWrappers = document.querySelectorAll('.itemBox .text-wrapper')
 const projectItems = document.querySelectorAll('#projects .project-item')
 const contactItems = document.querySelectorAll('#contacts .contact-item')
 
@@ -39,7 +42,7 @@ function checkAnimation() {
     animationContainer.forEach(cont => {
         const contTop = cont.getBoundingClientRect().top
 
-        if (contTop < triggerBottom && contTop + 100 > -triggerBottom) {
+        if (contTop + 100 < triggerBottom && contTop > -triggerBottom) {
             cont.classList.add('active')
         } else {
             cont.classList.remove('active')
@@ -71,24 +74,6 @@ function checkAnimation() {
     } else {
         skillItems.forEach(skill => {
             skill.classList.add('active')
-        })
-    }
-    if (!animationContainer[3].classList.contains('active')) {
-        projectItems.forEach(el => {
-            el.classList.remove('active')
-        })
-    } else {
-        projectItems.forEach(el => {
-            el.classList.add('active')
-        })
-    }
-    if (!animationContainer[4].classList.contains('active')) {
-        contactItems.forEach(el => {
-            el.classList.remove('active')
-        })
-    } else {
-        contactItems.forEach(el => {
-            el.classList.add('active')
         })
     }
 }
@@ -180,6 +165,12 @@ listBtn.forEach(list => {
             removeClass()
             addClass(value)
         }
+    })
+})
+
+expandBtns.forEach(expandBtn => {
+    expandBtn.addEventListener('click', () => {
+        expandBtn.previousElementSibling.classList.toggle('limit')
     })
 })
 
